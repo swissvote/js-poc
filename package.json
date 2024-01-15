@@ -1,7 +1,7 @@
 {
   "name": "@nexys-systems/boilerplate_vite",
   "private": true,
-  "type":"module",
+  "type": "module",
   "version": "0.0.13",
   "scripts": {
     "start": "vite",
@@ -20,5 +20,9 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.6",
     "vitest": "^1.0.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "react-chartjs-2": "^5.2.0"
   }
 }
