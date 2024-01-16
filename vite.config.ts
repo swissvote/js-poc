@@ -13,25 +13,25 @@ const proxy: { [l: string]: ProxyOptions } = {
 };
 
 // this the default/base configuration
-const baseConfig =  {
+const baseConfig = {
   plugins: [react()],
   test: {
     // ...
   },
-  server: { proxy }
+  server: { proxy },
 };
 
 // https://vitejs.dev/config/
 // conditional config: https://vitejs.dev/config/#conditional-config
-export default defineConfig(({ command, mode, ssrBuild }) => {  
+export default defineConfig(({ command, mode, ssrBuild }) => {
   // if  `mode===ghpages`: we add the path prefix to match the path prefix of gh pages
-  if (mode === 'ghpages') {
-    return {...baseConfig, base: "/boilerplate_vite/" };
+  if (mode === "ghpages") {
+    return { ...baseConfig, base: "/js-poc/" };
   }
 
-  if (mode === 'deploy') {
-    return {...baseConfig, base: "/demo/" };
+  if (mode === "deploy") {
+    return { ...baseConfig, base: "/demo/" };
   }
-  
+
   return baseConfig;
 });
