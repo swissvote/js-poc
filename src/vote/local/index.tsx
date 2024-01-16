@@ -50,7 +50,7 @@ const Main = () => {
     <>
       <InfoUI info={info} />
 
-      <div className="grid grid-cols-2 mt-3">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 mt-3">
         <div>
           <VoteWCast info={info} onCast={handleVote} />
         </div>

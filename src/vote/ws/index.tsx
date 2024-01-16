@@ -81,7 +81,7 @@ const WebSocketComponent = () => {
     <LayoutVote>
       <>
         <InfoUI info={info} />
-        <div className="grid grid-cols-2">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2">
           <div>
             <VoteWCast info={info} onCast={handleCast} />
           </div>
