@@ -116,22 +116,29 @@ export const exportKeyPair = async (
   return { publicKeyString, privateKeyString };
 };
 
-export const importKeyPair = async (
-  publicKeyString: string,
-  privateKeyString: string
-): Promise<CryptoKeyPair> => {
-  // Convert Base64 string to ArrayBuffer
+export const importPublicKey = async (
+  publicKeyString: string
+): Promise<CryptoKey> => {
   const publicKeyBuffer = base64StringToArrayBuffer(publicKeyString);
-  const privateKeyBuffer = base64StringToArrayBuffer(privateKeyString);
 
-  // Import the public key
-  const importedPublicKey = await window.crypto.subtle.importKey(
+  return window.crypto.subtle.importKey(
     "spki",
     publicKeyBuffer,
     { name: "RSA-OAEP", hash: "SHA-256" },
     true,
     ["encrypt"]
   );
+};
+
+export const importKeyPair = async (
+  publicKeyString: string,
+  privateKeyString: string
+): Promise<CryptoKeyPair> => {
+  // Import the public key
+  const importedPublicKey = await importPublicKey(publicKeyString);
+
+  // Convert Base64 string to ArrayBuffer
+  const privateKeyBuffer = base64StringToArrayBuffer(privateKeyString);
 
   // Import the private key
   const importedPrivateKey = await window.crypto.subtle.importKey(
