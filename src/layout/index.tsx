@@ -1,3 +1,4 @@
+import Footer from "./footer";
 import TopMenu from "./top-menu";
 
 function Layout({ children }: { children: any }) {
@@ -5,6 +6,7 @@ function Layout({ children }: { children: any }) {
     <div className="flex flex-col min-h-screen bg-gray-100">
       <TopMenu />
       <main className="flex-grow">{children}</main>
+      <Footer />
     </div>
   );
 }
