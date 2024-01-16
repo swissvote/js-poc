@@ -1,5 +1,5 @@
-import * as T from "./type";
-import * as CryptoHelper from "./crypto-helper";
+import * as T from "../type";
+import * as CryptoHelper from "../crypto-helper";
 
 const InfoUI = ({ info }: { info: T.Info }) => {
   return (

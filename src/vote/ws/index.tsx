@@ -1,40 +1,13 @@
 import React, { useState, useEffect } from "react";
-import LayoutVote from "./layout-vote";
-import { Info, TallyResult } from "./type";
-import InfoUI from "./info-ui";
+import LayoutVote from "../ui/layout-vote";
+import { Info, TallyResult } from "../type";
+import InfoUI from "../ui/info-ui";
 
-import VoteWCast from "./vote-w-cast";
-import { toBase64 } from "./crypto-helper";
-import { TallyResults } from "./tally-results";
+import VoteWCast from "../ui/vote-w-cast";
+import { toBase64 } from "../crypto-helper";
+import { TallyResults } from "../ui/tally-results";
 
-function pemToBase64(pem: string) {
-  return pem
-    .replace("-----BEGIN PUBLIC KEY-----", "")
-    .replace("-----END PUBLIC KEY-----", "")
-    .replace(/\s/g, ""); // Remove spaces, newlines, etc.
-}
-
-function base64StringToArrayBuffer(base64: string) {
-  const binaryString = window.atob(base64);
-  const bytes = new Uint8Array(binaryString.length);
-  for (let i = 0; i < binaryString.length; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-  return bytes.buffer;
-}
-
-export const importPublicKey = async (pemKey: string) => {
-  const base64Key = pemToBase64(pemKey);
-  const keyBuffer = base64StringToArrayBuffer(base64Key);
-
-  return window.crypto.subtle.importKey(
-    "spki",
-    keyBuffer,
-    { name: "RSA-OAEP", hash: "SHA-256" },
-    true,
-    ["encrypt"]
-  );
-};
+import * as U from "./utils";
 
 const WebSocketComponent = () => {
   const [info, setInfo] = React.useState<Info | null>(null);
@@ -43,7 +16,7 @@ const WebSocketComponent = () => {
 
   // Connect to WebSocket server
   useEffect(() => {
-    const newSocket = new WebSocket("ws://localhost:8080");
+    const newSocket = new WebSocket("wss://faq.nexys.io/ws/"); //"ws://localhost:8080");
 
     newSocket.onopen = () => {
       console.log("Connected to the WebSocket server");
@@ -55,7 +28,7 @@ const WebSocketComponent = () => {
         if ("publicKey" in jData && "title" in jData) {
           console.log("hello!", jData.title, jData.publicKey);
 
-          importPublicKey(jData.publicKey)
+          U.importPublicKey(jData.publicKey)
             .then((publicKey) => {
               setInfo({
                 title: jData.title,

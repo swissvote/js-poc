@@ -1,11 +1,11 @@
 import React from "react";
 
-import VoteComponent from "./VoteComponent";
+import VoteComponent from "./vote-component";
 
-import * as CryptoHelper from "./crypto-helper";
+import * as CryptoHelper from "../crypto-helper";
 
-import { Info } from "./type";
-import { publicKeyEncrypt } from "./utils";
+import { Info } from "../type";
+import { publicKeyEncrypt } from "../utils";
 
 const VoteWCast = ({
   info,

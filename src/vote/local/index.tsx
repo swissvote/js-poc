@@ -1,13 +1,13 @@
 import React from "react";
 
-import * as CryptoHelper from "./crypto-helper";
+import * as CryptoHelper from "../crypto-helper";
 
-import { Info, TallyResult } from "./type";
-import { getInfoFromServer, tallyVote } from "./utils";
-import { TallyResults } from "./tally-results";
-import LayoutVote from "./layout-vote";
-import InfoUI from "./info-ui";
-import VoteWCast from "./vote-w-cast";
+import { Info, TallyResult } from "../type";
+import { getInfoFromServer, tallyVote } from "../utils";
+import { TallyResults } from "../ui/tally-results";
+import LayoutVote from "../ui/layout-vote";
+import InfoUI from "../ui/info-ui";
+import VoteWCast from "../ui/vote-w-cast";
 
 const Main = () => {
   const [info, setInfo] = React.useState<Info | null>(null);

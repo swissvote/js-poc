@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { generateFriendlyString } from "./crypto-helper";
+import { generateFriendlyString } from "../crypto-helper";
 
 const VoteComponent = ({
   onVote,
